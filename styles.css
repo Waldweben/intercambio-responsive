@@ -1,5 +1,14 @@
 /* ---- ESTILO BASE (PC y teléfonos en horizontal) ---- */
 /* Esto aplica cuando el ancho es mayor que la altura */
+#menu {
+    display: flex;
+    flex-direction: row;   /* HORIZONTAL por defecto */
+    gap: 12px;
+    flex-wrap: nowrap;
+    overflow-x: auto;      /* Scroll horizontal si es necesario */
+    padding: 15px;
+}
+
 /* ---- VISTA PC ---- */
 @media (min-width: 1025px) {
     html, body {
@@ -57,61 +66,59 @@
         white-space: nowrap;
     }
 }
-/* ---- SMARTPHONE (vertical u horizontal) ---- */
-/* Aplica cuando el ancho es menor o igual a 1024px */
-@media (max-width: 1024px) {
-
-    html, body {
-        height: auto;
-        overflow-y: auto;
-        margin: 0;
-    }
+/* ---- SMARTPHONE: VERTICAL (portrait) ---- */
+@media (max-width: 1024px) and (orientation: portrait) {
 
     #menu {
         display: flex;
-        flex-direction: column;   /* 🔥 UNA SOLA COLUMNA */
+        flex-direction: column;
         width: 100%;
-        overflow: visible;        /* sin scrolls raros */
+        overflow: visible;
         gap: 12px;
-        padding: 15px;
+        padding: 10px;
     }
 
     .name-card {
         width: 100%;
-        height: 140px;            /* 🔥 altura fija en móvil */
-        position: relative;
+        height: 80px;
+        min-height: 80px;
         border-radius: 12px;
-        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 0;
+        position: relative;
+        overflow: hidden;
     }
 
     .name-card .bg-img {
         position: absolute;
         inset: 0;
+        width: 100%;
+        height: 100%;
         background-size: cover;
         background-position: center;
-        filter: blur(6px) brightness(0.65);
+        filter: blur(4px);
         transform: scale(1.1);
+        z-index: 1;
     }
 
-    .overlay {
+    .name-card .overlay {
         position: absolute;
         inset: 0;
-        background: rgba(0,0,0,0.3);
+        background: rgba(0,0,0,0.45);
+        z-index: 2;
     }
 
-    /* 🔥 TEXTO NORMAL (sin rotar) */
+    /* Contenido normal, centrado y horizontal */
     .name-card .content {
         position: relative;
-        z-index: 2;
-        font-size: 1.8rem;
-        font-weight: bold;
+        z-index: 3;
+        transform: rotate(0deg) !important;
+        font-size: 28px;
+        font-weight: 700;
         color: white;
-        transform: rotate(0deg) !important;  /* quita rotación */
-        white-space: nowrap;
+        text-align: center;
     }
 }
+
 
