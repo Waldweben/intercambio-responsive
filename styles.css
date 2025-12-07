@@ -1,0 +1,117 @@
+/* ---- ESTILO BASE (PC y teléfonos en horizontal) ---- */
+/* Esto aplica cuando el ancho es mayor que la altura */
+/* ---- VISTA PC ---- */
+@media (min-width: 1025px) {
+    html, body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden; /* no scroll vertical */
+    }
+
+    #menu {
+        display: flex;
+        flex-direction: row;
+        height: 100vh;           /* cada tarjeta ocupa el alto total */
+        width: 100vw;
+        overflow: hidden;        /* sin scroll */
+    }
+
+    .name-card {
+        flex: 1;                 /* divide el ancho equitativamente */
+        height: 100vh;           
+        position: relative;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        background: #000;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Fondo */
+    .name-card .bg-img {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        filter: blur(6px) brightness(0.6);
+        transform: scale(1.1);
+    }
+
+    .name-card .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.25);
+    }
+
+    /* Contenido ROTADO */
+    .name-card .content {
+        position: relative;
+        z-index: 2;
+        font-size: 3rem;
+        color: white;
+        font-weight: bold;
+        transform: rotate(-90deg);  /* 🔥 texto vertical rotado */
+        white-space: nowrap;
+    }
+}
+/* ---- SMARTPHONE (vertical u horizontal) ---- */
+/* Aplica cuando el ancho es menor o igual a 1024px */
+@media (max-width: 1024px) {
+
+    html, body {
+        height: auto;
+        overflow-y: auto;
+        margin: 0;
+    }
+
+    #menu {
+        display: flex;
+        flex-direction: column;   /* 🔥 UNA SOLA COLUMNA */
+        width: 100%;
+        overflow: visible;        /* sin scrolls raros */
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .name-card {
+        width: 100%;
+        height: 140px;            /* 🔥 altura fija en móvil */
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+    }
+
+    .name-card .bg-img {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        filter: blur(6px) brightness(0.65);
+        transform: scale(1.1);
+    }
+
+    .overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.3);
+    }
+
+    /* 🔥 TEXTO NORMAL (sin rotar) */
+    .name-card .content {
+        position: relative;
+        z-index: 2;
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: white;
+        transform: rotate(0deg) !important;  /* quita rotación */
+        white-space: nowrap;
+    }
+}
+
